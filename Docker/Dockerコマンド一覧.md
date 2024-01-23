@@ -32,6 +32,16 @@ Dockerfileを更新した等の理由でキャッシュを使いたくない場�
 ■参考
 - [docker-compose build](https://docs.docker.jp/compose/reference/build.html)
 
+## コンテナ一覧の表示
+```
+docker-compose ps
+```
+-a：停止済みのコンテナを全て表示
+-q：ID飲み表示
+
+参考
+- [docker-compose ps](https://docs.docker.jp/compose/reference/ps.html)
+
 
 ## コンテナ構築〜起動
 ```
