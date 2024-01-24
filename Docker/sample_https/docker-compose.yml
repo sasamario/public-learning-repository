@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    restart: always
+    container_name: sample-https
+    ports:
+      - '80:80'
+    volumes:
+      - ./html:/var/www/html
+  
+  https-portal:
+    image: steveltn/https-portal:latest
+    restart: always
+    container_name: https-portal
+    ports:
+      # - 80:80
+      - '443:443'
+    links:
+      - web
+    environment:
+      DOMAINS: 'localhost -> http:sample-https'
+      STAGE: 'local'
+    
+
