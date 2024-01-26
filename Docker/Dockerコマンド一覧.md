@@ -1,9 +1,4 @@
 # docker
-
-
-### 
-
-
 ## dockerコンテナ内に入る
 ```
 docker container exec -it [コンテナ名] bash
@@ -12,6 +7,18 @@ docker container exec -it [コンテナ名] bash
 ■参考
 - [docker container](https://docs.docker.jp/engine/reference/commandline/container.html)
 
+
+## ホストとコンテナ間のファイルコピー
+・コンテナ内ファイル → ホストPCにコピー 
+```
+docker cp [コンテナ]:[コンテナ内ソースパス] [ホストPC内ソースパス] 
+```
+例）以下はsample-httpsというコンテナ内の000-default.confをdokcer-compose.ymlと同階層に000-default.confという名前でコピー作成している。
+`docker cp sample-https:/etc/apache2/sites-available/000-default.conf .000-default.conf`
+
+■参考
+- [Dockerでホストとコンテナ間でのファイルコピー](https://qiita.com/gologo13/items/7e4e404af80377b48fd5)
+- [docker cp](https://docs.docker.jp/engine/reference/commandline/cp.html)
 
 
 ***
