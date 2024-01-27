@@ -1,11 +1,20 @@
 # docker
-## dockerコンテナ内に入る
+## コンテナ内に入る
 ```
 docker container exec -it [コンテナ名] bash
 ```
 
 ■参考
 - [docker container](https://docs.docker.jp/engine/reference/commandline/container.html)
+
+## コンテナのログを確認
+```
+docker logs [コンテナ名]
+```
+
+■参考
+- [docker logs](https://docs.docker.jp/engine/reference/commandline/logs.html)
+
 
 
 ## ホストとコンテナ間のファイルコピー
