@@ -31,16 +31,27 @@ docker cp [コンテナ]:[コンテナ内ソースパス] [ホストPC内ソー�
 
 
 ***
-# docker-compose
+# docker compose
+## docker-composeとdocker composeの違い
+結論：どちらも同じコマンドは使えるが、`docker compose`の使用を推奨。
+
+理由としては、docker compose V1が非推奨となったらしく、`docker-compose`はV1の書き方。
+docker compose V2からは`docker compose`コマンドが使えるようになったためこちらを使う方が良いのではないか。
+
+■参考
+- [docker-composeコマンドは、docker composeとも書ける](https://www.konosumi.net/entry/2023/02/26/142508)
+- [Docker Compose V2(Version 2) GA のまとめ](https://qiita.com/zembutsu/items/d82b2ae1a511ebd6a350)
+
+
 ## dockerイメージのビルド
 ```
-docker-compose build
+docker compose build
 ```
 dockerfileからdockerイメージを構築
 
 
 ```
-docker-compose build --no-cache
+docker compose build --no-cache
 ```
 --no-cache：イメージの構築時、キャッシュを使用しない
 Dockerfileを更新した等の理由でキャッシュを使いたくない場合はこちらのオプションをつける。
@@ -50,7 +61,7 @@ Dockerfileを更新した等の理由でキャッシュを使いたくない場�
 
 ## コンテナ一覧の表示
 ```
-docker-compose ps
+docker compose ps
 ```
 -a：停止済みのコンテナを全て表示
 -q：ID飲み表示
@@ -61,12 +72,12 @@ docker-compose ps
 
 ## コンテナ構築〜起動
 ```
-docker-compose up -d
+docker compose up -d
 ```
 -d：バックグラウンド実行
 
 ```
-docker-compose up --build
+docker compose up --build
 ```
 --build：コンテナを開始前にイメージを構築
 
@@ -77,7 +88,7 @@ docker-compose up --build
 
 ## コンテナの停止
 ```
-docker-compose down
+docker compose down
 ```
 コンテナを停止し、upで作成したコンテナ、ネットワーク、ボリューム、イメージを削除
 
@@ -85,6 +96,16 @@ docker-compose down
 - [docker-compose down](https://docs.docker.jp/compose/reference/down.html)
 
 
+## コンテナの再起動
+```
+docker compose restart
+```
+コンテナを再起動する。
+backgroundで起動していた場合はこのコマンドで、コンテナはそのままでソースコードの変更だけ反映可能とのこと
+
+■参考
+- [初心者向けdocker-composeコマンド逆引き](https://qiita.com/okyk/items/a374ddb3f853d1688820)
+- [docker compose restart](https://docs.docker.jp/engine/reference/commandline/compose_restart.html)
 
 
 ***
