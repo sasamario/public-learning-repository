@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build: ./docker/
+    restart: always
+    container_name: sample_web
+    ports:
+      - '8080:80'
+    volumes:
+      - ./html:/var/www/html
+
+  db:
+    image: mysql:8.0
+    restart: always
+    container_name: sample_db
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: sampledb
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    depends_on:
+      - web
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    restart: always
+    container_name: sample_myadmin
+    environment:
+      - PMA_HOSTS=sample_db
+    depends_on:
+      - db
+    ports:
+      - '8000:80'
