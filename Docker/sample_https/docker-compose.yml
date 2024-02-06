@@ -6,21 +6,24 @@ services:
     restart: always
     container_name: sample-https
     ports:
-      - '80:80'
+      - '8080:80'
     volumes:
       - ./html:/var/www/html
+      # - .000-default.conf:/etc/apache2/sites-available/000-default.conf
   
   https-portal:
     image: steveltn/https-portal:latest
     restart: always
     container_name: https-portal
     ports:
-      # - 80:80
+      # - '80:80'
       - '443:443'
     links:
       - web
     environment:
+      # DOMAINS: 'sample.https.dev -> http:sample-https'
       DOMAINS: 'localhost -> http:sample-https'
       STAGE: 'local'
+    volumes:
+      - ./volumes/https-portal:/var/lib/https-portal
     
-
