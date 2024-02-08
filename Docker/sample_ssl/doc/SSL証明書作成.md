@@ -1,21 +1,22 @@
 # SSL証明書作成
 以下記事を参考に実施
-[【Apache】ローカルに立てたDockerコンテナでHTTPS通信する方法](https://www.engilaboo.com/apache-docker-https/)
+- [【Apache】ローカルに立てたDockerコンテナでHTTPS通信する方法](https://www.engilaboo.com/apache-docker-https/)
 
 ## 1. 秘密鍵の作成
-`openssl genrsa -aes128 2048 > server.key`
+```bash
+openssl genrsa -aes128 2048 > server.key
+```
 
 パスワードの入力を求められるので適当に入力
+
 例）password
 
 ・opensslコマンド
-Unix系のOSで標準で利用できる暗号化関連を幅広くサポートするプログラム。
-秘密鍵と公開鍵のペアの作成及び管理
-自己署名証明書の作成 等
+Unix系のOSで標準で利用できる暗号化関連を幅広くサポートするプログラム。秘密鍵と公開鍵のペアの作成及び管理、自己署名証明書の作成 等。
 
-genrsa：RSA暗号方式の秘密鍵作成
--aes128：128ビットのAES形式で暗号化
-2048：2048バイト長の鍵
+- genrsa：RSA暗号方式の秘密鍵作成
+- -aes128：128ビットのAES形式で暗号化
+- 2048：2048バイト長の鍵
 
 
 ■参考
@@ -24,7 +25,9 @@ genrsa：RSA暗号方式の秘密鍵作成
 
 
 ## 2. CSRファイルの作成
-`openssl req -new -key server.key > server.csr`
+```bash
+openssl req -new -key server.key > server.csr
+```
 
 コマンド実行をすると、顧問ネーム等の情報の入力が求められる。
 Country Name：JP
@@ -33,24 +36,28 @@ Common name：samplessl
 ・CSRファイルとは
 秘密鍵を元に作った公開鍵ファイルにコモンネームなどの情報を付加したもの
 
-req：CSRファイルを作成する際に指定
--new：CSRを新規作成
--key：秘密鍵ファイルを指定
+- req：CSRファイルを作成する際に指定
+- -new：CSRを新規作成
+- -key：秘密鍵ファイルを指定
 
 
 ## 3. サーバ証明書の作成
-`openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt`
+```bash
+openssl x509 -in server.csr -days 365 -req -signkey server.key > server.crt
+```
 
-x509：X.509形式の証明書を発行
--in server.csr：CSRファイルを指定
--days 365：証明書の有効期限を指定
--req：入力ファイルがCSRファイルであることを示す
--signkey server.key：秘密鍵ファイルを指定
+- x509：X.509形式の証明書を発行
+- -in server.csr：CSRファイルを指定
+- -days 365：証明書の有効期限を指定
+- -req：入力ファイルがCSRファイルであることを示す
+- -signkey server.key：秘密鍵ファイルを指定
 
 
 ## 4. Apache起動時のパスフレーズ入力を省略（任意）
-`mv server.key server.key.org`
-`openssl rsa -in server.key.org > server.key`
+```bash
+mv server.key server.key.org
+openssl rsa -in server.key.org > server.key
+```
 
 TODO：コマンドの意味について調べてから必要に応じて実行する（とりあえずは実行しない）
 
