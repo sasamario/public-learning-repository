@@ -59,8 +59,13 @@ mv server.key server.key.org
 openssl rsa -in server.key.org > server.key
 ```
 
-TODO：コマンドの意味について調べてから必要に応じて実行する（とりあえずは実行しない）
+秘密鍵のパスワードを削除している。パスフレーズを外さないとWebコンテナが起動できない。
+
+1. mvコマンドでserver.keyをserver.key.orgという名前に変更
+2. openssl rsa -in server.key.org > server.key でserver.key.orgからパスフレーズを取り除いたserver.keyを取得 
+
 
 
 ## 参考
 - [SSL証明書のファイル形式と作成方法まとめ](https://medicalfields.jp/blog/apache/ssl%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%BD%A2%E5%BC%8F%E3%81%A8%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81/)
+- [Apacheが立ち上がらないのですが、エラーコードの理由がわかりません](https://teratail.com/questions/pg4afpa3x57v7y)
