@@ -11,7 +11,7 @@ try {
 		}
 
 		$file_data = file_get_contents($file_tmp_name);
-		$encoding  = mb_detect_encoding($file_data, "UTF-8, SJIS-win");
+		$encoding  = mb_detect_encoding($file_data, "UTF-8, SJIS-win", true);
 
 		// Shift-JISの場合、文字コードを変換する
 		if ($encoding === "SJIS-win") {
