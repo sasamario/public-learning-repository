@@ -41,3 +41,49 @@ REST はアーキテクチャ上の制約の集まりであり、プロトコル
 参考
 - [REST API とは](https://www.redhat.com/ja/topics/api/what-is-a-rest-api)
 - [『REST API』とは](https://www.mulesoft.com/jp/resources/api/what-is-rest-api-design)
+
+
+## ローカル確認よう環境構築
+とりあえずbackendの構築をNode.jsで行う。
+
+1. Node.jsとnpmが既にあることを確認
+2. turtorial用のディレクトリを用意し、その中にbackendというディレクトリを用意
+3. `npm init -y`でpackage.jsonファイルを作成。 
+	- ※npm initでpackage.jsonを作っておかないと、npm installでインストールしたパッケージの管理ができなくなる(https://qiita.com/sugurutakahashi12345/items/1049a33b86225f6345fe)
+4. `npm install graphql apollo-server -D` でgraphqlとapollo-serverをインストールする
+	- `-D`オプションで、ローカルインストールする
+5. package.jsonを修正
+	- mainをserver.jsにする
+	- "dev": "node server.js" を追加
+6. package.jsonと同階層にserver.jsを作成
+	- サンプルソースコード：https://github.com/Shin-sibainu/graphql-backend-tutorial
+7. `npm run dev`を実行し、http://localhost:4000/ にアクセス
+8. 以下クエリを実行すると、booksで定義したauthorとtitleが取得できる
+
+■リクエスト
+```
+query Test {
+  test {
+    author
+    title
+  }
+}
+```
+
+■レスポンス
+```
+{
+  "data": {
+    "test": [
+      {
+        "author": "夏目漱石",
+        "title": "吾輩は猫である"
+      },
+      {
+        "author": "太宰治",
+        "title": "走れメロス"
+      }
+    ]
+  }
+}
+```
