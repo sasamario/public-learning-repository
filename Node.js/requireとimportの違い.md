@@ -1,10 +1,16 @@
 # node.js の require と import について調べなおす
-参考：[node.js の require と import について調べなおす](https://qiita.com/TakeshiNickOsanai/items/7899a60044d71aa8d899)
-
 簡単にいうと、nodeモジュールの読み込み形式の違い。
 
-requireは 「CommonJS」 形式によるモジュールの読み込み方法。
-importは 「ECMAScript」 形式によるモジュールの読み込み方法。
+- requireは 「CommonJS」 形式によるモジュールの読み込み方法。
+- importは 「ECMAScript」 形式によるモジュールの読み込み方法。
+
+**require文はNode.jsの環境で動作する書き方。つまり、ブラウザ側ではrequire文は使うことができない。**  
+ただし、webpackなどのモジュールバンドルツールを利用することでどの環境でも動作するようにすることができる。  
+
+
+### 参考
+- [node.js の require と import について調べなおす](https://qiita.com/TakeshiNickOsanai/items/7899a60044d71aa8d899)
+- [jsのimportとrequireの違い](https://qiita.com/minato-naka/items/39ecc285d1e37226a283)
 
 
 # requireの使い分け
