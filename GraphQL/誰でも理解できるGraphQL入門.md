@@ -43,7 +43,7 @@ REST はアーキテクチャ上の制約の集まりであり、プロトコル
 - [『REST API』とは](https://www.mulesoft.com/jp/resources/api/what-is-rest-api-design)
 
 
-## ローカル確認よう環境構築
+## ローカル確認用環境構築
 とりあえずbackendの構築をNode.jsで行う。
 
 1. Node.jsとnpmが既にあることを確認
