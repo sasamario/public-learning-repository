@@ -19,16 +19,21 @@ prismaを活用し、DBのデータを取得する。
 3. `npx prisma init` ※実行した階層に「prisma」というディレクトリが作成される
 	- schema.prismaというファイルがいろいろDB関連の定義を行うファイル
 4. `npx prisma migrate dev --name init` ※--name initは作成されたマイグレーションファイルの接頭辞として付与される
-	- このままだと、エラーになる。原因はどうやらDB接続ユーザにDBの作成権限が必要らしい
+	- このままだと、エラーになる。原因はどうやらDB接続ユーザにDBの作成権限が必要らしい（prismaのshadow databaseで必要になる。migration操作で利用する一時的なDBらしい。）
 	- 暫定対応：dbコンテナ内に入り、userに全権限を付与
 		- `GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;`で全権限付与
 		- `FLUSH PRIVILEGES;`で権限をリロード
 	- 永続対応：Docker起動時にuserの権限を変更するコマンドを実行
+5. `npx prisma studio`でprisma studio（DBクライアント）を開き接続確認
+6. API側の作り込み
+7. postmanを活用し動作確認
 
-	以下メモ
-	- `docker container exec -it sample_db bash`でDBコンテナ内に入る
-	- `mysql -h db -u root -p`でrootユーザとして接続 
-	- `show grants for user;`でuserの権限を確認
+
+## メモ
+以下メモ
+- `docker container exec -it sample_db bash`でDBコンテナ内に入る
+- `mysql -h db -u root -p`でrootユーザとして接続 
+- `show grants for user;`でuserの権限を確認
 ```
 mysql> show grants for user;
 +----------------------------------------------------+
@@ -50,6 +55,7 @@ TODO:後ほど整理
 
 ## ドキュメント　参考サイト
 - [Prisma Quickstart](https://www.prisma.io/docs/getting-started/quickstart)
+- [Prisma Client CRUD](https://www.prisma.io/docs/orm/prisma-client/queries/crud)
 
 - [【Prisma入門】スキーマ定義で使用するデコレーターあれこれ](https://qiita.com/curry__30/items/95d3655fa23d84b959a3)
 - [DockerのMySQLでprisma migrate devが成功する方法](https://zenn.dev/sungvalley/articles/05e5cfd244c9f2)
