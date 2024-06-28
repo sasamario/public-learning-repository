@@ -8,6 +8,12 @@ const prisma = new PrismaClient();
 // // expressでjsonのミドルウェアを使用（json形式のpostを受け取るため）
 app.use(express.json());
 
+// 全てのTodo取得
+app.get("/", async(req, res) => {
+	const todos = await prisma.todos.findMany();
+	return res.json(todos);
+});
+
 // expressで/createに対するpostの受取処理
 app.post("/create", async(req, res) => {
 	// post値を取得{ todo }とすることで、jsonのtodoの値を取得できる
