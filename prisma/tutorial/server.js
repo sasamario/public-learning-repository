@@ -14,6 +14,16 @@ app.get("/", async(req, res) => {
 	return res.json(todos);
 });
 
+app.get("/:id", async(req, res) => {
+	const id = req.params.id;
+	const post = await prisma.todos.findUnique({
+		where: {
+			id: Number(id),
+		},
+	});
+	return res.json(post);
+});
+
 // expressで/createに対するpostの受取処理
 app.post("/create", async(req, res) => {
 	// post値を取得{ todo }とすることで、jsonのtodoの値を取得できる
