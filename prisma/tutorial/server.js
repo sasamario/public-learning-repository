@@ -14,6 +14,7 @@ app.get("/", async(req, res) => {
 	return res.json(todos);
 });
 
+// 指定のTodoを取得
 app.get("/:id", async(req, res) => {
 	const id = req.params.id;
 	const post = await prisma.todos.findUnique({
@@ -38,6 +39,21 @@ app.post("/create", async(req, res) => {
 		}
 	});
 	return res.json(posts);
+});
+
+// Todo更新
+app.post("/update", async(req, res) => {
+	const {id, todo, status} = req.body;
+	const updateTodo = await prisma.todos.update({
+		where: {
+			id: Number(id),
+		},
+		data: {
+			todo: todo,
+			status: Number(status),
+		},
+	});
+	return res.json(updateTodo);
 });
 
 app.listen(PORT, () => {
