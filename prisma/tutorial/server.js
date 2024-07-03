@@ -56,6 +56,17 @@ app.post("/update", async(req, res) => {
 	return res.json(updateTodo);
 });
 
+// Todo削除
+app.post("/delete", async(req, res) => {
+	const { id } = req.body;
+	const deleteTodo = await prisma.todos.delete({
+		where: {
+			id: Number(id),
+		}
+	});
+	return res.json(deleteTodo);
+});
+
 app.listen(PORT, () => {
 	console.log(`Server is running at http://localhost:${PORT}`);
 });
