@@ -25,6 +25,31 @@ app.get("/:id", async(req, res) => {
 	return res.json(post);
 });
 
+// 指定のFolderと紐づくTodoを取得
+app.get("/folder/:folderId", async(req, res) => {
+	const folderId = req.params.folderId;
+	const post = await prisma.folder.findUnique({
+		where: {
+			id: Number(folderId),
+		},
+		// includeを使うことで、リレーションテーブルを結合して取得可能
+		include: {
+			todos: true,
+		},
+		// 以下のようにselectで必要なカラムのみ取得も可能
+		// select: {
+		// 	name: true,
+		// 	todos: {
+		// 		select: {
+		// 			todo: true,
+		// 			status: true,
+		// 		},
+		// 	},
+		// },
+	});
+	return res.json(post);
+});
+
 // expressで/createに対するpostの受取処理
 app.post("/create", async(req, res) => {
 	// post値を取得{ todo }とすることで、jsonのtodoの値を取得できる
