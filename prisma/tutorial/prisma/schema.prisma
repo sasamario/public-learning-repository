@@ -15,6 +15,14 @@ datasource db {
 
 model Todos {
   id Int @default(autoincrement()) @id
+  folderId Int
+  folder Folder @relation(fields: [folderId], references: [id])
   todo String
   status Int
+}
+
+model Folder {
+  id Int @default(autoincrement()) @id
+  todos Todos[]
+  name String
 }
