@@ -34,6 +34,7 @@ app.post("/create", async(req, res) => {
 	// create()はprismaの組み込み関数
 	const posts = await prisma.todos.create({
 		data: {
+			folderId: 1, //最初は固定で「1:タスク」とする
 			todo: todo,
 			status: 0, // status:0 未完了
 		}
@@ -43,12 +44,13 @@ app.post("/create", async(req, res) => {
 
 // Todo更新
 app.post("/update", async(req, res) => {
-	const {id, todo, status} = req.body;
+	const {id, folderId, todo, status} = req.body;
 	const updateTodo = await prisma.todos.update({
 		where: {
 			id: Number(id),
 		},
 		data: {
+			folderId: folderId,
 			todo: todo,
 			status: Number(status),
 		},
