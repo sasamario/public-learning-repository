@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const { Prisma, PrismaClient } = require("@prisma/client");
 const express = require("express");
 const app = express();
 const PORT = 8080;
@@ -48,6 +48,27 @@ app.get("/folder/:folderId", async(req, res) => {
 		// },
 	});
 	return res.json(post);
+});
+
+// 指定のTodoと紐づくFolderを取得(生SQL版)
+app.post("/folder/rawsql", async(req, res) => {
+	const { ids } = req.body;
+
+	const posts = await prisma.$queryRaw`
+		SELECT
+			Todos.id
+			, Todos.todo
+			, Folder.name
+		FROM
+			Todos
+		LEFT JOIN
+			Folder
+		ON
+			Todos.folderId = Folder.id
+		WHERE
+			Todos.id IN (${Prisma.join(ids)})
+	`;
+	return res.json(posts);
 });
 
 // expressで/createに対するpostの受取処理

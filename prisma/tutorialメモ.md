@@ -29,6 +29,10 @@ prismaを活用し、DBのデータを取得する。
 7. postmanを活用し動作確認
 
 
+## 起動コマンド
+`npm start`で起動  
+→package.jsonに記載されている。
+
 ## メモ
 以下メモ
 - `docker container exec -it sample_db bash`でDBコンテナ内に入る
@@ -45,9 +49,8 @@ mysql> show grants for user;
 2 rows in set (0.00 sec)
 ```
 
-
-
-TODO:後ほど整理
+■Invalid `prisma.$queryRaw()` invocation: エラーについて  
+何かしらSQLの構文エラーによるものと思われる。SQLを見直すこと。
 
 
 メモ
