@@ -1,4 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class CsvOutputService {}
+export class CsvOutputService {
+	constructor() {}
+
+	run() {
+		console.log('test');
+	}
+}
