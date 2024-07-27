@@ -33,6 +33,16 @@ prismaを活用し、DBのデータを取得する。
 `npm start`で起動  
 →package.jsonに記載されている。
 
+## 他PCでの環境構築
+このリポジトリをcloneして、別途環境構築をする際はprisma.schemaの内容をもとにローカルDBにテーブル構造を反映する必要がある。  
+その場合は以下コマンドを実行するとprisma.schemaとDBを同期することができるみたい。ただ、このような使い方であっているのかはわからない...  
+```bash
+npx prisma db push
+```
+参考  
+[Prototype your schema](https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/mental-model#prototype-your-schema)
+
+
 ## メモ
 以下メモ
 - `docker container exec -it sample_db bash`でDBコンテナ内に入る
