@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as FastCsv from 'fast-csv';
 import { createWriteStream } from 'fs';
 import { PrismaService } from '../prisma.service';
+import { CsvRow } from './csv-output.type';
 
 @Injectable()
 export class CsvOutputService {
@@ -22,7 +23,7 @@ export class CsvOutputService {
 
 			const csvStream = FastCsv.format(option);
 
-			let row;
+			let row: CsvRow;
 			for (const [key, value] of Object.entries(Todos)) {
 				row = {
 					id: value.id,
@@ -42,7 +43,7 @@ export class CsvOutputService {
 		
 	}
 
-	buildCsvRow(row) {
+	buildCsvRow(row: CsvRow) {
 		const csvRow = {
 			'id': row.id,
 			'Todo名': row.todo,
