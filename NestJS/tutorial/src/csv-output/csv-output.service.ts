@@ -17,7 +17,7 @@ export class CsvOutputService {
 
 			const option = {
 				headers: ['id', 'Todo名', 'ステータス', '分類'], // ヘッダー名の指定（booleanで設定し、別途定義も可能）
-				quote: "'", // 引用符を'とする
+				quoteColumns: true,
 				writeBOM: true, // UTF-8 BOMとする
 			}
 
