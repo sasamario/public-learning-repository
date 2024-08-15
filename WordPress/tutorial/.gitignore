@@ -1,0 +1,14 @@
+docker/
+wordpress/wp-admin
+wordpress/wp-content/plugins
+wordpress/wp-content/index.php
+wordpress/wp-content/themes/index.php
+wordpress/wp-content/themes/twentytwenty*
+wordpress/wp-content/languages
+wordpress/wp-includes
+wordpress/.htaccess
+wordpress/index.php
+wordpress/license.txt
+wordpress/readme.html
+wordpress/wp-*.php
+wordpress/xmlrpc.php
