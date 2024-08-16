@@ -5,6 +5,8 @@ wordpress/wp-content/index.php
 wordpress/wp-content/themes/index.php
 wordpress/wp-content/themes/twentytwenty*
 wordpress/wp-content/languages
+wordpress/wp-content/upgrade
+wordpress/wp-content/uploads
 wordpress/wp-includes
 wordpress/.htaccess
 wordpress/index.php
