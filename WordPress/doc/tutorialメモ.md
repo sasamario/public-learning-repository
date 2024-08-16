@@ -56,6 +56,15 @@ wordpress/wp-content/themes
 - functions.php
 - style.css　※WordPressのテーマでは必須らしい
 
+## スタイルについて
+スタイルはBootstrapを活用して最低限のデザインとする（ここでの学習の目的とは異なるため）  
+BootstrapについてはCDNを活用する。  
+[Bootstrap5.3](https://getbootstrap.jp/docs/5.3/getting-started/introduction/)
 
+あとはオリジナルテーマ用のcssも使う。  
+オリジナルテーマのstyle.cssのパスは、get_stylesheet_uri()で取得することができる。  
 
-
+### Bootstrap参考
+- [Navbar](https://getbootstrap.jp/docs/5.3/components/navbar/)
+- [Grid](https://getbootstrap.jp/docs/5.3/layout/grid/)
+- [Card](https://getbootstrap.jp/docs/5.3/components/card/)
