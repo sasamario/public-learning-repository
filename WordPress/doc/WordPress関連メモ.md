@@ -36,7 +36,7 @@ the_post()は取得したデータを削除していくため、while(have_posts
 | 更新日 |	the_modified_date | get_the_modified_date |
 | 投稿者名 |	the_author | get_the_author |
 | カテゴリ名(リンク付き) | the_category | get_the_category |
-| アイキャッチ画像 |	the_post_thumbnail	get_the_post_thumbnail |
+| アイキャッチ画像 |	the_post_thumbnail | get_the_post_thumbnail |
 
 引用：[記事の表示を行うためのループ制御の基本～have_posts、the_postと表示関数を学ぼう～](https://plugmize.jp/archives/blog/20170411_haveposts_getpost.html)
 
