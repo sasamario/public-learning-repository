@@ -44,6 +44,34 @@ the_post()は取得したデータを削除していくため、while(have_posts
 そのため、出力するだけなら表示関数を使用した方が良さそう？
 
 
+## サムネイルの使用
+サムネイル（アイキャッチ画像）は、投稿に設定できる画像のこと。  
+デフォルトでは有効になっておらず、別途functions.phpで有効化する必要がある。  
+
+```php:functions.php
+add_action('init', 'enable_thumbnails');
+function thumbnails() {
+  // サムネイル（アイキャッチ画像）の有効化
+  add_theme_support('post-thumbnails');
+}
+```
+
+add_theme_support()は、WordPressの特定の機能を使えるようにするための関数らしい。  
+
+### WordPressのフックという機能について
+WordPressのフックは、WordPressのサイトが表示されるまでの過程で、独自の処理を挿入することができる仕組み。  
+フックには、以下の2種類のものがある。  
+- add_action：アクションフック
+- add_filter：フィルターフック
+
+今回のサムネイルの設定で使用しているのは、アクションフック。  
+第一引数でフック名（init）を指定し、第二引数で設定する関数名を指定している。  
+詳しくはよくわからないが、割と早い段階で実行される？  
+
+### サムネイルのURL取得
+get_the_post_thumbnail_url()でサムネイルのURLのみ取得可能。  
+
+
 
 # 参考サイト
 ## Advanced Custom Fields（ACF）関連
@@ -58,3 +86,9 @@ the_post()は取得したデータを削除していくため、while(have_posts
 - [個別ページ（記事ページ）へのURLを取得・出力する](https://thewppress.com/libraries/get-the-permalink/)
 - WP_Query
   - [いっつも忘れるWP_Queryの使用方法とパラメータ一覧。がっつり整理してみた](https://wemo.tech/160)
+- サムネイル関連
+  - [WordPressでサムネイルを使えるようにするfunctions.php設定](https://shimizu-create.com/2023/08/2018/)
+  - [the_post_thumbnail_url() でアイキャッチURLを出力する](https://site-manage.net/archives/3406)
+- その他
+  - [WordPressフックとは？アクションフック・フィルターフックの使い方](https://webst8.com/blog/wordpress-action-filter-hook/)
+  - [WordPressのアクションフックの種類と実行順](https://qiita.com/kijtra/items/68a06083d25af8b5a119)
