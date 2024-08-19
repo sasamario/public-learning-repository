@@ -15,7 +15,7 @@
     <?php while ($wp_query->have_posts()): $wp_query->the_post(); ?>
     <div class="col mb-3">
       <div class="card" style="width: 18rem;">
-        <img src="<?= get_field('image') ?>" class="card-img-top" alt="...">
+        <img src="<?= get_the_post_thumbnail_url() ?>" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title"><?= get_the_title() ?></h5>
           <a href="<?= get_the_permalink() ?>" class="card-link">投稿詳細へ</a>
