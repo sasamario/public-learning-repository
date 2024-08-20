@@ -3,7 +3,7 @@
 
   $wp_query = new WP_Query([
     'post_type' => 'post', // 投稿タイプ
-    'posts_per_page' => 6, // 表示する投稿数
+    'posts_per_page' => 3, // 表示する投稿数
     'order' => 'DESC',
     'orderby' => 'date',
   ]);
