@@ -81,14 +81,16 @@ get_the_post_thumbnail_url()でサムネイルのURLのみ取得可能。
     - ACFで画像のフィールドを用意することはできるが、デフォルトはSVGファイルはアップロードできない。SVG supportという別プラグインで対応可能。
 
 ## WordPress関連
+### 記事の表示
 - ★[記事の表示を行うためのループ制御の基本～have_posts、the_postと表示関数を学ぼう～](https://plugmize.jp/archives/blog/20170411_haveposts_getpost.html)
-  - 単体ページの場合はループは不要！
 - [個別ページ（記事ページ）へのURLを取得・出力する](https://thewppress.com/libraries/get-the-permalink/)
-- WP_Query
-  - [いっつも忘れるWP_Queryの使用方法とパラメータ一覧。がっつり整理してみた](https://wemo.tech/160)
-- サムネイル関連
-  - [WordPressでサムネイルを使えるようにするfunctions.php設定](https://shimizu-create.com/2023/08/2018/)
-  - [the_post_thumbnail_url() でアイキャッチURLを出力する](https://site-manage.net/archives/3406)
-- その他
-  - [WordPressフックとは？アクションフック・フィルターフックの使い方](https://webst8.com/blog/wordpress-action-filter-hook/)
-  - [WordPressのアクションフックの種類と実行順](https://qiita.com/kijtra/items/68a06083d25af8b5a119)
+- [【WordPress】アーカイブページを有効にする方法](https://sossu-blog.com/archive/)
+- [いっつも忘れるWP_Queryの使用方法とパラメータ一覧。がっつり整理してみた](https://wemo.tech/160)
+
+### サムネイル
+- [WordPressでサムネイルを使えるようにするfunctions.php設定](https://shimizu-create.com/2023/08/2018/)
+- [the_post_thumbnail_url() でアイキャッチURLを出力する](https://site-manage.net/archives/3406)
+
+### その他
+- [WordPressフックとは？アクションフック・フィルターフックの使い方](https://webst8.com/blog/wordpress-action-filter-hook/)
+- [WordPressのアクションフックの種類と実行順](https://qiita.com/kijtra/items/68a06083d25af8b5a119)
