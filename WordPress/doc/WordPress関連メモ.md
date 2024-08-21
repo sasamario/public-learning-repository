@@ -91,6 +91,15 @@ get_the_post_thumbnail_url()でサムネイルのURLのみ取得可能。
 - [WordPressでサムネイルを使えるようにするfunctions.php設定](https://shimizu-create.com/2023/08/2018/)
 - [the_post_thumbnail_url() でアイキャッチURLを出力する](https://site-manage.net/archives/3406)
 
+### 設定
+- [WordPressのオリジナルテーマに画像（スクリーンショット）を設定する](https://wp-ch.jp/631)
+- [【WordPress】style.cssの編集方法や書き方を解説する【テーマ自作】](https://miyashimo-studio.jp/blog/detail/152)
+  - style.cssのコメントで、テーマの作成者やバージョン情報など記載できる
+
+### functions.php
+- [【wordpress】head内の不要なコードを削除する方法](https://renkosaka.com/head-clean/)
+- [WordPressで自動で吐き出される「meta name=”robots” ～」のタグを非表示にする方法（プラグインなし）](https://wordpress-mag.com/wordpress-robots-remove/)
+
 ### その他
 - [WordPressフックとは？アクションフック・フィルターフックの使い方](https://webst8.com/blog/wordpress-action-filter-hook/)
 - [WordPressのアクションフックの種類と実行順](https://qiita.com/kijtra/items/68a06083d25af8b5a119)
