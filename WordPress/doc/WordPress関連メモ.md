@@ -87,8 +87,14 @@ get_the_post_thumbnail_url()でサムネイルのURLのみ取得可能。
 - [【WordPress】アーカイブページを有効にする方法](https://sossu-blog.com/archive/)
 - [いっつも忘れるWP_Queryの使用方法とパラメータ一覧。がっつり整理してみた](https://wemo.tech/160)
 
+### テーマ作成
+- [【WordPress】get_template_partの使い方。変数を渡す方法も解説](https://retval.jp/blog/wordpress-get_template_part/)
+  - パーツ化した時は、get_templade_part()を使うと良い
+- [Wordpressで投稿タイプを取得・表示する方法](https://illbenet.jp/view/wordpress_get_post_type)
+  - 投稿タイプの名称などいろいろな情報が取得可能！
+
 ### サムネイル
-- [WordPressでサムネイルを使えるようにするfunctions.php設定](https://shimizu-create.com/2023/08/2018/)
+- [アイキャッチ画像（Featured Image）を有効にする-投稿タイプを限定してアイキャッチ画像を有効化する](https://thewppress.com/libraries/enable-featured-image/)
 - [the_post_thumbnail_url() でアイキャッチURLを出力する](https://site-manage.net/archives/3406)
 
 ### 設定
@@ -102,4 +108,5 @@ get_the_post_thumbnail_url()でサムネイルのURLのみ取得可能。
 
 ### その他
 - [WordPressフックとは？アクションフック・フィルターフックの使い方](https://webst8.com/blog/wordpress-action-filter-hook/)
+  - フックで設定するコールバック関数の引数が2つ以上の場合は、add_action()の第四引数で引数の数を指定する必要がある！
 - [WordPressのアクションフックの種類と実行順](https://qiita.com/kijtra/items/68a06083d25af8b5a119)
