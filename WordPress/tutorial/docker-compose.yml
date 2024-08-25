@@ -10,7 +10,7 @@ services:
       - WORDPRESS_DB_HOST=db
       - WORDPRESS_DB_USER=user
       - WORDPRESS_DB_PASSWORD=password
-      - WORDPRESS_DEBUG=true #debugモード
+      - WORDPRESS_DEBUG=true #debugモード wp-cpmfog.phpでここで定義した値をgetenv_docker()で取得しているみたい
     depends_on:
       - db
       - phpmyadmin
