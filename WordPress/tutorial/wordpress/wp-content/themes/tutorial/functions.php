@@ -57,4 +57,24 @@ function remove_global_styles() {
 }
 add_action('wp_enqueue_scripts', 'remove_global_styles');
 
+/**
+ * 管理画面設定
+ */
+add_action('admin_bar_menu', function($wp_admin_bar) {
+  // サイト名 別タブ表示対応
+  $wp_admin_bar->add_menu([
+    'id' => 'site-name', //サイト名
+    'meta' => [
+      'target' => '_blank'
+    ],
+  ]);
+
+  // サイトを表示 別タブ表示対応
+  $wp_admin_bar->add_menu([
+    'id' => 'view-site', //サイト名 > サイトを表示
+    'meta' => [
+      'target' => '_blank'
+    ],
+  ]);
+}, 100);
 ?>
