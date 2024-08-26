@@ -103,8 +103,10 @@ get_the_post_thumbnail_url()でサムネイルのURLのみ取得可能。
   - style.cssのコメントで、テーマの作成者やバージョン情報など記載できる
 
 ### functions.php
-- [【wordpress】head内の不要なコードを削除する方法](https://renkosaka.com/head-clean/)
-- [WordPressで自動で吐き出される「meta name=”robots” ～」のタグを非表示にする方法（プラグインなし）](https://wordpress-mag.com/wordpress-robots-remove/)
+- wp_head関連
+  - [【wordpress】head内の不要なコードを削除する方法](https://renkosaka.com/head-clean/)
+  - [WordPressで自動で吐き出される「meta name=”robots” ～」のタグを非表示にする方法（プラグインなし）](https://wordpress-mag.com/wordpress-robots-remove/)
+  - [wp_head()で出力される不要なタグを除去](https://labo.kon-ruri.co.jp/remove-tags-in-wp_head/)
 
 ### その他
 - [WordPressフックとは？アクションフック・フィルターフックの使い方](https://webst8.com/blog/wordpress-action-filter-hook/)
