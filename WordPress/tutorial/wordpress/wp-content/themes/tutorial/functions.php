@@ -7,6 +7,19 @@ add_action('init', function() {
 });
 
 /**
+ * アーカイブページ有効化
+ */
+function post_has_archive($args, $post_type){
+  if ('post' == $post_type) {
+    $args['rewrite'] = true;
+    $args['has_archive'] = 'tech'; //この設定の場合アーカイブページのURLは、/techとなる
+    $args['label'] = '投稿';
+  }
+  return $args;
+}
+add_filter('register_post_type_args', 'post_has_archive', 10, 2); //第二引数のコールバック関数で引数を2つ指定しているため、第四引数で2と指定している
+
+/**
  * 不要なhead項目の削除
  */
 // Really Simple Discovery（外部の投稿ツールからWordPressサイトへ記事を投稿するために必要なもの）

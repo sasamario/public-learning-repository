@@ -70,3 +70,9 @@ BootstrapについてはCDNを活用する。
 - [Navbar](https://getbootstrap.jp/docs/5.3/components/navbar/)
 - [Grid](https://getbootstrap.jp/docs/5.3/layout/grid/)
 - [Card](https://getbootstrap.jp/docs/5.3/components/card/)
+
+## アーカイブページ
+デフォルトだとアーカイブページが有効になっていないため、functions.phpで有効化する必要がある。  
+functions.phpで設定後は、管理画面 > 設定 > パーマリンク　で何もしなくて良いので「変更を保存」する必要がある。  
+参考：[【WordPress】アーカイブページを有効にする方法](https://sossu-blog.com/archive/)
+
