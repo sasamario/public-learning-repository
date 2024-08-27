@@ -89,5 +89,14 @@ add_action('admin_bar_menu', function($wp_admin_bar) {
       'target' => '_blank'
     ],
   ]);
+
 }, 100);
+
+/**
+ * 管理画面 サイドメニュー項目非表示対応
+ */
+add_action('admin_menu', function() {
+  remove_menu_page('edit.php?post_type=page'); //「固定」非表示
+  remove_menu_page('edit-comments.php'); //「コメント」非表示
+})
 ?>
