@@ -109,7 +109,7 @@ get_the_post_thumbnail_url()でサムネイルのURLのみ取得可能。
   - [wp_head()で出力される不要なタグを除去](https://labo.kon-ruri.co.jp/remove-tags-in-wp_head/)
 - 管理画面関連
   - [【コピペOK】WordPress管理画面「サイトを表示」を別ウィンドウで開くスニペット](https://netamame.com/wp-target-blank/)
-  - [WordPressで管理バー（wp_admin_bar）で項目別に非表示する方法](https://qiita.com/yusuket1120/items/4a5e75219ea869c1938c)
+  - [【WordPress】管理画面メニューのカスタマイズ](https://qiita.com/konweb/items/5483efbe87087eff5cc8)
 
 ### その他
 - [WordPressフックとは？アクションフック・フィルターフックの使い方](https://webst8.com/blog/wordpress-action-filter-hook/)
