@@ -55,5 +55,12 @@ function onInput(e) {
 ```
 上記処理が、双方向バインディングにの省略形。
 
+## 条件付きレンダリング
+```html
+<h1 v-if="condition">Vue is awesome!</h1>
+```
+conditionの値がtrueの場合、このh1要素がレンダリングされる。
+
+
 # 参考
 [Vue3 公式ドキュメント](https://ja.vuejs.org/guide/introduction)
