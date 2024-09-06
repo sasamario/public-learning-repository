@@ -29,11 +29,11 @@ Unix系のOSで標準で利用できる暗号化関連を幅広くサポート�
 openssl req -new -key server.key > server.csr
 ```
 
-コマンド実行をすると、顧問ネーム等の情報の入力が求められる。
-Country Name：JP
-Common name：samplessl
+コマンド実行をすると、顧問ネーム等の情報の入力が求められる。  
+Country Name：JP  
+Common name：samplessl  
 
-・CSRファイルとは
+■CSRファイルとは  
 秘密鍵を元に作った公開鍵ファイルにコモンネームなどの情報を付加したもの
 
 - req：CSRファイルを作成する際に指定
