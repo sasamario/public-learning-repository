@@ -2,6 +2,9 @@ FROM php:8.1-apache
 
 RUN apt-get update && apt-get install -y 
 
+# php.iniをコピー
+COPY php.ini /usr/local/etc/php/
+
 # 秘密鍵ファイルとサーバ証明書をコンテナ側にコピー
 COPY apache/ssl/server.crt /etc/apache2/
 COPY apache/ssl/server.key /etc/apache2/
