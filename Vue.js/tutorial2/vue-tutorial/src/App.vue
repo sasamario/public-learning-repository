@@ -1,10 +1,12 @@
 <script>
 import Card from "./components/Card.vue";
+import Counter from "./components/Counter.vue";
 
 export default {
   // コンポーネントのローカル登録
   components: {
     Card,
+    Counter,
   },
 };
 </script>
@@ -13,7 +15,9 @@ export default {
   <div class="container my-5">
     <div class="row my-3">
       <div class="col">
-        <Card title="test" />
+        <Card title="Counter">
+          <Counter />
+        </Card>
       </div>
       <div class="col">
         <Card title="test2" />
