@@ -21,3 +21,8 @@ http://localhost:5173/ にアクセスし Vue のプロジェクトが表示さ�
 
 - [ゼロから始める Vue.js 環境構築 (Vue プロジェクト編)](https://zenn.dev/comm_vue_nuxt/articles/ways-of-vuejs-setup-app)
 - [クイックスタート-Vue アプリケーションの作成](https://ja.vuejs.org/guide/quick-start.html#creating-a-vue-application)
+
+# 修正
+
+作成されているプロジェクトは、Options API ではなく Composition API で書かれている。  
+今回は Options API で学習を進めていきたいので書き換えていく。
