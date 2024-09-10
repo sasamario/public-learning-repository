@@ -2,6 +2,7 @@
 import Card from "./components/Card.vue";
 import Counter from "./components/Counter.vue";
 import Input from "./components/Input.vue";
+import Todo from "./components/Todo.vue";
 
 export default {
   // コンポーネントのローカル登録
@@ -9,6 +10,7 @@ export default {
     Card,
     Counter,
     Input,
+    Todo,
   },
 };
 </script>
@@ -27,7 +29,9 @@ export default {
         </Card>
       </div>
       <div class="col">
-        <Card title="test3" />
+        <Card title="Todo">
+          <Todo />
+        </Card>
       </div>
     </div>
   </div>
