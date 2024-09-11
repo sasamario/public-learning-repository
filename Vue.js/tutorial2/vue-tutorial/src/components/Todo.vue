@@ -4,20 +4,17 @@ export default {
   data() {
     return {
       newTodo: "",
-      todos: [
-        {
-          id: id++,
-          text: "Todo1",
-        },
-      ],
+      todos: [],
     };
   },
   methods: {
     add(newTodo) {
-      this.todos.push({
-        id: id++,
-        text: newTodo,
-      });
+      if (newTodo !== "") {
+        this.todos.push({
+          id: id++,
+          text: newTodo,
+        });
+      }
       this.newTodo = "";
     },
   },
@@ -37,7 +34,7 @@ export default {
       </div>
     </div>
     <div class="row mt-3">
-      <ul class="list-group">
+      <ul class="list-group" v-if="todos.length > 0">
         <li v-for="todo in todos" :key="todo.id" class="list-group-item">
           {{ todo.id }}： {{ todo.text }}
         </li>
