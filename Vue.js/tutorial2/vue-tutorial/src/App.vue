@@ -3,6 +3,7 @@ import Card from "./components/Card.vue";
 import Counter from "./components/Counter.vue";
 import Input from "./components/Input.vue";
 import Todo from "./components/Todo.vue";
+import Switch from "./components/Switch.vue";
 
 export default {
   // コンポーネントのローカル登録
@@ -11,6 +12,7 @@ export default {
     Counter,
     Input,
     Todo,
+    Switch,
   },
 };
 </script>
@@ -33,6 +35,15 @@ export default {
           <Todo />
         </Card>
       </div>
+    </div>
+    <div class="row my-3">
+      <div class="col">
+        <Card title="Switch">
+          <Switch />
+        </Card>
+      </div>
+      <div class="col"></div>
+      <div class="col"></div>
     </div>
   </div>
 </template>
