@@ -7,6 +7,18 @@ export default {
       todos: [],
     };
   },
+  watch: {
+    // 対象のリアクティブなプロパティ名を関数名にする必要があるため、todos: {}としている
+    todos: {
+      // 通常のwatchだと、監視対象のプロパティに新しい値が割り当てられたときにしか実行できない
+      // ネストしたプロパティの変更を検知する場合は、以下のようなディープウォッチャーを使用する
+      handler(newTodos, oldTodos) {
+        // 追加したTodoの内容をコンソールに出力している
+        console.log(this.todos[this.todos.length - 1]);
+      },
+      deep: true,
+    },
+  },
   methods: {
     add(newTodo) {
       if (newTodo !== "") {
