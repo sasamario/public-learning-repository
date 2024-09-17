@@ -21,17 +21,18 @@ export default {
   <div class="container my-5">
     <div class="row my-3">
       <div class="col">
-        <Card title="Counter">
+        <!-- フォールスルー属性として、classをCardコンポーネント要素の属性に追加される -->
+        <Card title="Counter" class="bg-primary-subtle">
           <Counter />
         </Card>
       </div>
       <div class="col">
-        <Card title="Input">
+        <Card title="Input" class="bg-success-subtle">
           <Input />
         </Card>
       </div>
       <div class="col">
-        <Card title="Todo">
+        <Card title="Todo" class="bg-info-subtle">
           <Todo />
         </Card>
       </div>
