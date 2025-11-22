@@ -46,7 +46,7 @@ npm install
 
 React や Vite など必要なライブラリがインストールされる
 
-### 3. 開発サーバの軌道
+### 3. 開発サーバの起動
 
 ```bash
 npm run dev
