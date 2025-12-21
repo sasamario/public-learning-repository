@@ -1,0 +1,47 @@
+services:
+  web:
+    # M1/M2 Mac 対応のため platform 指定を追加
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: apache-php
+    # ホスト:8080、コンテナ:80 にポートフォワーディング（http://localhost:8080）
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www
+    # mssql コンテナ起動後に web コンテナを起動する
+    depends_on:
+      - mssql
+
+  mssql:
+    # M1/M2 Mac 対応のため platform 指定を追加
+    platform: linux/amd64
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    # ACCEPT_EULA と SA_PASSWORD は必須環境変数
+    ## ACCEPT_EULA: 利用規約への同意
+    ## SA_PASSWORD: システム管理者（SA）アカウントのパスワード設定（強力なパスワードを指定する必要あり）
+    ## MSSQL_PID: エディション指定（Express、Developer、Standard、Enterprise など）。今回は無償版の Express を指定
+    ## システム:mssql、ユーザー:sa、パスワード:SA_PASSWORD で接続可能
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrongPassword123!"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+  # mssql操作用のDBクライアント
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mssql
+
+volumes:
+  mssql-data:
