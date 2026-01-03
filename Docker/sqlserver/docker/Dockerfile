@@ -66,7 +66,7 @@ RUN pecl install sqlsrv-5.10.1 pdo_sqlsrv-5.10.1 && \
 
 # -----Composer インストール-----
 ## Composer公式イメージからコピー
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 # -----作業ディレクトリを /var/www に変更-----
 WORKDIR /var/www
