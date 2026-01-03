@@ -58,13 +58,39 @@ docker volume inspect [volume名]
 docker volume rm [volume名]
 ```
 
+■ よくあるトラブル
+
+- https://zenn.dev/yamato_snow/articles/7ff2f3d4dd7055#%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB1%EF%BC%9A%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%A0%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%97%E3%81%9F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E6%9B%B8%E3%81%8D%E8%BE%BC%E3%82%81%E3%81%AA%E3%81%84
+
 ## bind mount
+
+bind mount は、ホストの特定のディレクトリ（パス）を、そのままコンテナにマウントする仕組み。  
+volumes と異なり Docker で管理するのではなく、ホスト側で管理するためホスト側で直接編集することができる。
+
+■ 特徴
+
+- ホストとリアルタイム同期（ホスト側で編集するとコンテナ内で即反映される）
+  - 使いどころとしては、システムのソースを bind mount する（ソースを編集したら即時反映されるため開発で使われる）
+
+頻繁にホスト側で触るソースなどはこの bind mount を使うことになる。
+
+■bind mount の指定方法  
+volumes と同じよう名指定方法だが違いとしては、左側ではホスト側のマウント先のパスを指定する。
+
+```yml
+volumes:
+  - ./src:/var/www
+```
+
+左側はホスト側のパス、右側はコンテナのパスを指定する。
 
 ## tmpfs mount
 
+TODO...
+
 # 参考サイト
 
-https://qiita.com/etaroid/items/b1024c7d200a75b992fc
-https://qiita.com/etaroid/items/88ec3a0e2d80d7cdf87a
-https://qiita.com/etaroid/items/40106f13d47bfcbc2572
-https://zenn.dev/yamato_snow/articles/7ff2f3d4dd7055
+- https://qiita.com/etaroid/items/b1024c7d200a75b992fc
+- https://qiita.com/etaroid/items/88ec3a0e2d80d7cdf87a
+- https://qiita.com/etaroid/items/40106f13d47bfcbc2572
+- https://zenn.dev/yamato_snow/articles/7ff2f3d4dd7055
