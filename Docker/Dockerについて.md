@@ -22,6 +22,10 @@ Docker で起動したコンテナ内で扱うデータは、読み書き可能�
 そのため、Docker ではホストマシン上にデータを管理し、それをコンテナにマウントする手法が使われる。  
 具体的には「volume」「bind mount」「tmpfs mount」といったものがある。
 
+■ 公式ドキュメント
+
+- https://docs.docker.jp/storage/index.html
+
 ## volume
 
 Docker が管理する永続データ領域。
@@ -62,6 +66,10 @@ docker volume rm [volume名]
 
 - https://zenn.dev/yamato_snow/articles/7ff2f3d4dd7055#%E3%83%88%E3%83%A9%E3%83%96%E3%83%AB1%EF%BC%9A%E3%83%9C%E3%83%AA%E3%83%A5%E3%83%BC%E3%83%A0%E3%83%9E%E3%82%A6%E3%83%B3%E3%83%88%E3%81%97%E3%81%9F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AB%E6%9B%B8%E3%81%8D%E8%BE%BC%E3%82%81%E3%81%AA%E3%81%84
 
+■ 公式ドキュメント
+
+- https://docs.docker.jp/storage/volumes.html
+
 ## bind mount
 
 bind mount は、ホストの特定のディレクトリ（パス）を、そのままコンテナにマウントする仕組み。  
@@ -84,9 +92,37 @@ volumes:
 
 左側はホスト側のパス、右側はコンテナのパスを指定する。
 
+■ 公式ドキュメント
+
+- https://docs.docker.jp/storage/bind-mounts.html
+
 ## tmpfs mount
 
-TODO...
+tmpfs mount は、volume や bind mount とは異なりディスクには書き込まれず、ホストメモリ上（RAM）にのみ保持される。そのため、コンテナ停止と同時に消える一時ファイル。  
+ホスト上やコンテナの書き込み可能なレイヤーのどちらにも保持したくない機密情報（秘密鍵、トークン、一時認証情報）を扱う一時ファイルの保存などに便利。あとは消えても問題ないキャッシュなど。
+
+■ 特徴
+
+- メモリ上に作られる（SSD/HDD を使わない）
+- 永続化されない（コンテナ停止、再起動、Docker 再起動等で消える）
+- 高速
+- ディスクに残らない
+
+■tmpfs mount の指定方法
+
+```yml
+tmpfs:
+  - /tmp:size=64m,mode=1777
+```
+
+基本的には一時ファイルのパスを指定するだけ。ただ、メモリ上限の指定などをしないと使い放題となってしまうため、最低限上記で指定しているようなオプションを指定する方が良いらしい。
+
+- size：メモリ上限
+- mode：パーミッション
+
+■ 公式ドキュメント
+
+- https://docs.docker.jp/storage/tmpfs.html
 
 # 参考サイト
 
