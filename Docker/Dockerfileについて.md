@@ -10,7 +10,7 @@ Docker は Dockerfile に書かれた命令を読み込み、イメージを構�
 
 といった命令が記載される。
 
-## Dockerfile のディレクティブ
+# Dockerfile のディレクティブ
 
 ディレクティブは命令。以下のディレクティブがある。
 
@@ -27,7 +27,7 @@ Docker は Dockerfile に書かれた命令を読み込み、イメージを構�
 | `CMD`          | コンテナ起動時の**デフォルト**コマンド             | 起動時         |
 | `ENTRYPOINT`   | コンテナ起動時の**固定コマンド**                   | 起動時         |
 
-### FROM
+## FROM
 
 FROM は Docker イメージの土台となるものを指定するもの。そのため Dockerfile では、基本的に FROM 命令で始める必要がある（ARG は除く）。
 
@@ -36,11 +36,11 @@ FROM は Docker イメージの土台となるものを指定するもの。そ�
 FROM php:8.2-apache
 ```
 
-■ 公式ドキュメント
+■ 参考
 
 - [FROM](https://docs.docker.jp/engine/reference/builder.html#from)
 
-### RUN
+## RUN
 
 RUN は、Docker イメージを作る途中（ビルド時）に、コンテナ内でコマンドを実行するディレクティブ。ビルド時のみ実行される。  
 RUN を一番利用する使い方が、パッケージをインストールする際に実行する apt-get。
@@ -69,9 +69,57 @@ update → install → 不要ファイル削除
 （最終状態だけ保存）
 ```
 
-■ 公式ドキュメント
+■ 参考
 
 - [RUN](https://docs.docker.jp/develop/develop-images/dockerfile_best-practices.html#run)
+
+## COPY
+
+COPY は、ホストのファイルを Docker イメージに取り込むディレクティブ。  
+COPY も RUN と同様にビルド時に実行され、またレイヤーを作る。
+
+```dockerfile
+COPY [コピー元] [コピー先]
+```
+
+- コピー元：ビルドコンテキスト内のみ指定可能
+  - ビルドコンテキストとは、docker の build 時にアクセスできるファイル群。compose.yml で`context: .`と指定していたらカレントディレクトリ
+  - <ビルドコンテキスト>/src/index.php のように相対パスで指定するのが基本
+  - `COPY *.json /app/`のようにワイルドカードを使うことができる
+- コピー元：コンテナ内のパス
+  - 絶帝パスまたは、WORKDIR からの相対パスで指定することが可能
+
+### ★ ディレクトリコピー時の末尾の「/」の有無に注意
+
+`/`の有無で、ディレクトリごとか中身のみコピーするのか変わるため注意すること。
+
+```dockerfile
+# 末尾に/なし
+## 結果：/app/src/... app内にsrcフォルダをコピー
+COPY src /app
+
+# 末尾に/あり
+## 結果：/app/(srcの中身だけ入る)
+COPY src /app/
+```
+
+### ★ 別イメージからのコピー
+
+Laravel の環境構築をする際に、以下のようにしてコンポーザーの導入を行った。
+
+```dockerfile
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+```
+
+これは--from で composer のイメージを指定して、composer の実行ファイル(/user/bin/composer)をイメージ(/user/bin/composer)にコピーしている。  
+composer のイメージから自身のイメージにコピーしているため、ホストは経由していない。
+
+curl で composer をインストールするのと異なり、composer の実行ファイルのみコピーしてくることでイメージのサイズが最小限で済むということ。
+
+■ 参考
+
+- [COPY](https://docs.docker.jp/engine/reference/builder.html#copy)
+- [docker build コマンドでなんとなく指定している context を理解する](https://zenn.dev/levtech/articles/docker-build)
 
 # 参考
 
