@@ -56,6 +56,57 @@ class User extends Model
 
 ```
 
-参考
+■ 参考
 
 - [Eloquent の準備 - Eloquent モデルの規約](https://readouble.com/laravel/10.x/ja/eloquent.html)
+
+## アクセサについて
+
+アクセサとは Model の値を取得するときに加工する仕組み。  
+`$user->name;`のようにプロパティへアクセスした瞬間に処理を挟めるのが特徴。
+
+### どういった場面で使うか
+
+- 表示用にフォーマットする（例：トリム、姓と名を事前に連結しておくとか）
+- DB の生データを隠す
+- 毎回同じ加工処理を書くのを防ぐ
+
+例えば最近使ったケースで言うと、SQL Server の char 型がスペースでデータを埋めて保持しているためそれを trim するのにアクセサで対応した。  
+モデル側で対応することで、trim の処理をいちいち何回も呼ぶ必要がなくなる。
+
+### アクセサの定義
+
+アクセサを定義するには、protected なメソッドをモデル上に作成する。  
+このメソッド名はモデル属性やデータベースカラムの**キャメルケース**表現に対応させる必要がある。
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+  protected function firstName(): Attribute
+  {
+    return Attribute::make(
+      get: fn (string $value) => trim($value),
+    );
+  }
+}
+```
+
+■ ポイント
+
+- メソッド名はカラム名（first_name）をキャメルケースにしたもの
+- get：取得時に対する処理の定義（今回で言うと trim）
+- $user->first_name で自動適用
+- 全てのアクセサメソッドは、**Attribute**インスタンスを返す
+
+★ もし、複数カラムで同じアクセサ処理を使う場合などは、Trait を実装してそれを use するのが良い。
+
+■ 参考
+
+- [Eloquent：ミューテタ/キャスト](https://readouble.com/laravel/10.x/ja/eloquent-mutators.html)
