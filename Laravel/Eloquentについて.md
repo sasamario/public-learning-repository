@@ -35,23 +35,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-  # モデルに関連づけるテーブル名
-  protected $table = 'users';
+    # モデルに関連づけるテーブル名
+    protected $table = 'users';
 
-  # Modelの主キーとなるカラム名の指定（デフォルト:id）
-  protected $primaryKey = 'user_id';
+    # Modelの主キーとなるカラム名の指定（デフォルト:id）
+    protected $primaryKey = 'user_id';
 
-  # 主キーが自動採番（Auto Increment）かどうかを指定（デフォルト:false）
-  public $incrementing = false;
+    # 主キーが自動採番（Auto Increment）かどうかを指定（デフォルト:false）
+    public $incrementing = false;
 
-  # 主キーの型指定（デフォルト:int）
-  protected $keyType = 'string';
+    # 主キーの型指定（デフォルト:int）
+    protected $keyType = 'string';
 
-  # created_at/updated_atを自動で管理するかを指定（デフォルト:true）
-  public $timestamps = false;
+    # created_at/updated_atを自動で管理するかを指定（デフォルト:true）
+    public $timestamps = false;
 
-  # 日付カラムをDBに保存する際のフォーマットを指定（デフォルト:Y-m-d H:i:s）
-  protected $dateFormat = 'Y-m-d H:i:s';
+    # 日付カラムをDBに保存する際のフォーマットを指定（デフォルト:Y-m-d H:i:s）
+    protected $dateFormat = 'Y-m-d H:i:s';
 }
 
 ```
@@ -89,12 +89,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-  protected function firstName(): Attribute
-  {
-    return Attribute::make(
-      get: fn (string $value) => trim($value),
-    );
-  }
+    protected function firstName(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => trim($value),
+        );
+    }
 }
 ```
 
@@ -110,3 +110,59 @@ class User extends Model
 ■ 参考
 
 - [Eloquent：ミューテタ/キャスト](https://readouble.com/laravel/10.x/ja/eloquent-mutators.html)
+
+# リレーション
+
+## 1 対 1
+
+### hasOne
+
+例）User モデル（親）と Profile モデル（子）が 1 対 1 の場合
+
+```php
+// namespaceやuseは省略
+class User extends Model
+{
+    /**
+     * ユーザーに関連しているプロフィールの取得
+     */
+    public function profile(): HasOne
+    {
+        // 第二引数：外部キー名（デフォルトは、xxx_id）
+        // 第三引数：ローカルキー名（デフォルトは、id）
+        return $this->hasOne(Profile::class, 'foreign_key', 'local_key');
+    }
+}
+```
+
+- hasOne()は、親側のモデルで指定する
+- メソッド名は 1 対 1 の関係であれば、モデル名の単数形を指定するのが基本
+- 第二引数や第三引数は Eloquent が自動で判断するカラム名のルールに則っている場合は指定不要。異なる場合は指定する必要がある
+
+### belongsTo
+
+hasOne の逆でどの親に属しているかを表すリレーション。子側（外部キーを持っている側）のモデルに書く。
+
+```php
+// namespaceやuseは省略
+class Profile extends Model
+{
+    /**
+     * プロフィールは1人のユーザーに属する
+     */
+    public function user(): BelongsTo
+    {
+        // 第二引数：外部キー名（デフォルトは、xxx_id）
+        // 第三引数：親モデルの参照キー名（デフォルトは、id）
+        return $this->belongsTo(User::class, 'foreign_key', 'owner_key');
+    }
+}
+```
+
+- belongsTo()は、子側のモデルで指定する
+- メソッド名は 1 対 1 の関係であれば、モデル名の単数形を指定するのが基本
+- 第二引数や第三引数は Eloquent が自動で判断するカラム名のルールに則っている場合は指定不要。異なる場合は指定する必要がある
+
+■ 参考
+
+- [Eloquent：リレーション](https://readouble.com/laravel/10.x/ja/eloquent-relationships.html)
