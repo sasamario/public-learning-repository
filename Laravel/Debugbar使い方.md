@@ -87,6 +87,8 @@ Debugbar::stopMeasure('識別子', 'debug()のログ計測終了');
 
 そのリクエストでレンダリングされた Blade ビューを可視化する機能。以下の情報を確認することができる。
 
+■ できること
+
 - 使用されたテンプレートとソースの表示
 - フォルダを除外する
 - ★ オプションでデータを表示することができる 便利！！！
@@ -100,3 +102,21 @@ Debugbar::stopMeasure('識別子', 'debug()のログ計測終了');
 
 - [Collectors Views](https://laraveldebugbar.com/collectors/#views)
 - [laravel-debugbar/config/debugbar.php v3.14.10](https://github.com/fruitcake/laravel-debugbar/blob/v3.14.10/config/debugbar.php)
+
+## Route
+
+リクエストで使われたルートを可視化する機能。
+
+■ できること
+
+- 以下の詳細が表示される
+  - URI
+  - ミドルウェア
+  - コントローラ
+  - ルート名
+  - prefix（ルートで定義されている URL の接頭辞）
+  - where（ルートパラメータにつけられた制約条件）
+
+■ 参考
+
+- [Collectors Route](https://laraveldebugbar.com/collectors/#route)
