@@ -14,15 +14,14 @@ composer require barryvdh/laravel-debugbar --dev
 
 - [インストール](https://laraveldebugbar.com/installation/)
 
-# 使用法
+# Debugbar 各種機能
 
-## Debugbar 各種機能
+## Messages
 
-### Messages
+Debugbar クラスや、debug()などの出力内容を確認することができる。Log クラスの出力内容も確認できる。  
+オブジェクトなども確認できる。軽く確認するくらいなら、debug()を使うのが良さそう。
 
-Debugbar クラスや、debug()などの出力内容を確認することができる。  
-オブジェクトなども確認できる。軽く確認するくらいなら、debug()を使うのが良さそう。  
-Log クラスの出力内容も確認できる。
+■ 使い方
 
 ```php
 // debug()
@@ -39,7 +38,7 @@ Debugbar::warning('Debugbar::warning()のログ');
 Log::error('Log::error()のログ');
 ```
 
-■ ポイント
+上記のような処理を入れることで Messages に表示される。
 
 - どのファイルの何行目のログが確認できる
 - 「LOG」「NONE」「WARNING」「ERROR」「INFO」「DEBUG」等のタグで表示するログの種類を絞り込むことができる
@@ -48,3 +47,26 @@ Log::error('Log::error()のログ');
 ■ 参考
 
 - [Collectors Messages](https://laraveldebugbar.com/collectors/#messages)
+
+## Timeline
+
+1 リクエスト内で「どの処理に」「どれだけ時間がかかったか」を可視化する機能。  
+時系列で上から順に表示され、各処理にどのくらい時間がかかったかを確認できる。
+
+■ 使い方
+
+```php
+Debugbar::startMeasure('識別子', 'debug()のログ計測開始');
+// 計測したい処理
+Debugbar::stopMeasure('識別子', 'debug()のログ計測終了');
+```
+
+■ ポイント
+
+- 計測したい処理を startMeasure()と stopMeasure()で挟むことで計測できる
+- 第一引数は識別子で start と stop で同じ値を使う必要がある
+- 第二引数は説明文でなんでも OK
+
+■ 参考
+
+- [【保存版】Laravel Debugbar で開発効率が 3 倍になる！完全導入・活用ガイド 2024](https://dexall.co.jp/articles/?p=2545#i-12)
