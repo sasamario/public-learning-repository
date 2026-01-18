@@ -166,3 +166,55 @@ class Profile extends Model
 ■ 参考
 
 - [Eloquent：リレーション](https://readouble.com/laravel/10.x/ja/eloquent-relationships.html)
+
+## 1 対多
+
+TODO...
+
+## Lazy ロードと Eager ロードについて
+
+- Eloquent では通常関連モデルは、Lazy ロードされる
+- Lazy ロードはアクセスするタイミングで取得するため、使い方によっては N+1 問題に繋がる
+- Eager ロードは事前に取得するため、N+1 問題に対応できる
+- ケースバイケースで使い分ける
+
+### Lazy ロード（遅延ロード）
+
+- 関連モデルにアクセスしたタイミングで取得する方式
+- 無駄なクエリを減らせる場合がある
+- ただし、ループ内で使うと N+1 問題に繋がる
+
+```php
+// 例）UserとProfile
+$users = User::all();
+
+foreach ($users as $user) {
+    echo $user->profile->bio;
+}
+```
+
+以下のようにクエリが発行される。users 取得後 foreach 内で都度取得のためにクエリが実行されてしまう。そのため Profile のデータ量に応じてクエリも増えてしまう（N+1 問題）。
+
+1. `select * from users;`
+2. `select * from profiles where user_id = 1;`
+3. `select * from profiles where user_id = 2;`
+4. `select * from profiles where user_id = 3;`
+
+### Eager ロード
+
+- あらかじめ関連モデルのデータを取得する方式
+- ループしてもクエリは増えない
+
+```php
+// 例）UserとProfile
+$users = User::with('profile')->get();
+
+foreach ($users as $user) {
+    echo $user->profile->bio;
+}
+```
+
+以下のように最初にまとめて profiles から取得するため、foreach 内で profiles にアクセスする際はクエリは実行されない。
+
+1. `select * from users;`
+2. `select * from profiles where user_id in (1, 2, 3, ...)`
